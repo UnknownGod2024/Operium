@@ -1,0 +1,72 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color-scheme: light;
+}
+
+* {
+  scroll-behavior: smooth;
+}
+
+body {
+  @apply bg-linen text-ink antialiased;
+}
+
+.page-bg {
+  position: relative;
+  overflow: hidden;
+}
+
+.page-bg::before,
+.page-bg::after {
+  content: "";
+  position: absolute;
+  inset: auto;
+  width: 520px;
+  height: 520px;
+  border-radius: 999px;
+  filter: blur(80px);
+  opacity: 0.35;
+  pointer-events: none;
+  z-index: 0;
+}
+
+.page-bg::before {
+  top: -160px;
+  right: -120px;
+  background: radial-gradient(circle at 30% 30%, #dcd6c8, transparent 60%);
+}
+
+.page-bg::after {
+  bottom: -220px;
+  left: -120px;
+  background: radial-gradient(circle at 30% 30%, #d5ddd5, transparent 60%);
+}
+
+.section {
+  @apply relative z-10;
+}
+
+.card {
+  @apply rounded-2xl bg-white/70 shadow-soft shadow-outline border border-white/70 backdrop-blur;
+}
+
+.kicker {
+  @apply uppercase tracking-[0.24em] text-xs font-semibold text-stone;
+}
+
+.grid-line {
+  background-image: linear-gradient(to right, rgba(26,26,26,0.06) 1px, transparent 1px);
+  background-size: 140px 1px;
+}
+
+input,
+textarea {
+  @apply w-full rounded-xl border border-sand bg-white/90 px-4 py-3 text-sm text-ink placeholder:text-stone focus:border-ink focus:outline-none;
+}
+
+button {
+  @apply transition;
+}
