@@ -1,6 +1,12 @@
 // app/about-us/page.tsx
+"use client";
+
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import LightPillarBackground from "@/components/ui/LightPillarBackground";
+import { LampContainer } from "@/components/ui/lamp";
+import ProfileCard from "@/components/ui/ProfileCard";
+import { motion } from "framer-motion";
 import Script from "next/script";
 
 const momentumPillars = [
@@ -88,17 +94,25 @@ export default function AboutUsPage() {
         <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(3,7,18,0.2)_0%,rgba(3,7,18,0.42)_100%)]" />
         <div className="pointer-events-none absolute inset-x-0 bottom-0 z-10 h-28 bg-gradient-to-b from-transparent to-[#05070d]" />
       </section>
-      <div className="relative overflow-hidden bg-[#060C18]">
+      <section className="relative overflow-hidden bg-[#060C18]">
+        {/* LightPillar Background */}
         <div className="pointer-events-none absolute inset-0 z-0">
-          <div className="absolute inset-x-0 top-0 h-20 bg-gradient-to-b from-[#05070d] to-transparent" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_16%,rgba(37,99,235,0.18),rgba(37,99,235,0.06)_34%,transparent_68%)] [mask-image:radial-gradient(90%_70%_at_50%_35%,black,transparent)]" />
-          <div className="absolute inset-0 bg-[radial-gradient(circle_at_50%_48%,rgba(37,99,235,0.12),transparent_62%)] [mask-image:radial-gradient(82%_72%_at_50%_52%,black,transparent)]" />
+          <LightPillarBackground />
+        </div>
+        
+        {/* Gradient Overlays */}
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[linear-gradient(180deg,rgba(6,12,24,0.3)_0%,rgba(6,12,24,0.1)_40%,rgba(6,12,24,0.3)_100%)]" />
+        <div className="pointer-events-none absolute inset-0 z-10 bg-[radial-gradient(circle_at_50%_20%,rgba(37,99,235,0.15),transparent_50%),radial-gradient(circle_at_50%_80%,rgba(59,130,246,0.12),transparent_50%)]" />
+        
+        {/* Edge Vignettes */}
+        <div className="pointer-events-none absolute inset-0 z-10">
+          <div className="absolute inset-x-0 top-0 h-32 bg-gradient-to-b from-[#05070d] to-transparent" />
+          <div className="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-[#060C18] to-transparent" />
           <div className="absolute inset-y-0 left-0 w-40 bg-gradient-to-r from-[#060C18] to-transparent" />
           <div className="absolute inset-y-0 right-0 w-40 bg-gradient-to-l from-[#060C18] to-transparent" />
-          <div className="absolute left-1/2 top-16 bottom-16 hidden w-px -translate-x-1/2 bg-gradient-to-b from-transparent via-blue-300/25 to-transparent md:block" />
         </div>
 
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pb-10">
+        <div className="relative z-20 mx-auto max-w-7xl px-6 pb-10">
           {/* Section 1: Thesis */}
           <section className="relative py-28 text-center md:py-32">
             <p className="text-xs tracking-[0.3em] text-neutral-400">ABOUT OPERIUM</p>
@@ -199,33 +213,129 @@ export default function AboutUsPage() {
             </div>
           </section>
 
-          <div className="mx-auto h-px w-full max-w-6xl bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+          <section className="mx-auto max-w-4xl py-20 text-center">
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+            <motion.p
+              initial={{ opacity: 0 }}
+              whileInView={{ opacity: 1 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="my-8 text-xs tracking-[0.28em] text-neutral-400"
+            >
+              PRECISION INFRASTRUCTURE
+            </motion.p>
+            <div className="h-px w-full bg-gradient-to-r from-transparent via-blue-300/30 to-transparent" />
+          </section>
 
-          {/* Section 4: Founders */}
-          <section className="relative py-24 text-center md:py-32">
-            <p className="text-xs tracking-[0.28em] text-neutral-400">LED BY OPERATORS</p>
-            <h3 className="mx-auto mt-6 max-w-3xl text-3xl font-semibold text-white md:text-5xl">
-              Built by founders who value execution quality over noise.
-            </h3>
-            <p className="mx-auto mt-8 max-w-2xl text-lg leading-relaxed text-neutral-400">
-              We approach growth as a long-horizon system, not a short-cycle campaign. That philosophy shapes every
-              structure we build with clients.
-            </p>
-            <div className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
-              {founderProfiles.map((founder) => (
-                <article
-                  key={founder.name}
-                  className="group rounded-2xl border border-white/10 bg-white/[0.03] p-6 text-left transition duration-500 hover:border-blue-300/35 hover:bg-blue-500/[0.08]"
-                >
-                  <p className="text-2xl font-semibold text-white">{founder.name}</p>
-                  <p className="mt-1 text-neutral-300">{founder.role}</p>
-                  <p className="mt-4 text-sm leading-relaxed text-neutral-400">{founder.focus}</p>
-                </article>
-              ))}
+          {/* Section 4: Meet the Team */}
+          <section className="relative py-24 md:py-28">
+            <motion.div
+              initial={{ opacity: 0, y: 30 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              transition={{ duration: 0.7 }}
+              viewport={{ once: true }}
+              className="text-center mb-16"
+            >
+              <p className="text-xs tracking-[0.28em] text-neutral-400">MEET THE TEAM</p>
+              <h3 className="mt-5 text-4xl font-semibold leading-tight text-white md:text-6xl">
+                Led by operators who build.
+              </h3>
+              <p className="mt-7 mx-auto max-w-2xl text-lg leading-relaxed text-neutral-400">
+                We approach growth as a long-horizon system, not a short-cycle campaign. That philosophy shapes every structure we build.
+              </p>
+            </motion.div>
+
+            <div className="flex justify-center items-start gap-12 flex-wrap max-w-6xl mx-auto">
+              {founderProfiles.map((founder, index) => {
+                let avatarUrl = `https://api.dicebear.com/7.x/avataaars/svg?seed=${founder.name}`;
+                
+                if (founder.name === "Mantra Patel") {
+                  avatarUrl = "/mantra-patel.jpg";
+                } else if (founder.name === "Tanush Shah") {
+                  avatarUrl = "/tanush-shah.jpg";
+                }
+                
+                return (
+                  <motion.div
+                    key={founder.name}
+                    initial={{ opacity: 0, y: 50, scale: 0.95 }}
+                    whileInView={{ opacity: 1, y: 0, scale: 1 }}
+                    transition={{ 
+                      duration: 0.6, 
+                      delay: index * 0.2,
+                      ease: "easeOut"
+                    }}
+                    viewport={{ once: true, margin: "-50px" }}
+                    className="w-full max-w-[320px]"
+                  >
+                    <ProfileCard
+                      name={founder.name}
+                      title={founder.focus}
+                      handle={founder.name.toLowerCase().replace(' ', '')}
+                      status="Available"
+                      contactText="Connect"
+                      avatarUrl={avatarUrl}
+                      showUserInfo={true}
+                      enableTilt={true}
+                      behindGlowEnabled={true}
+                      behindGlowColor="rgba(59, 130, 246, 0.5)"
+                      innerGradient="linear-gradient(145deg, rgba(6, 12, 24, 0.9) 0%, rgba(37, 99, 235, 0.2) 100%)"
+                      onContactClick={() => {}}
+                    />
+                  </motion.div>
+                );
+              })}
             </div>
           </section>
         </div>
-      </div>
+      </section>
+
+      {/* Section 5: Lamp Animation - Full Window */}
+      <LampContainer className="bg-[#060C18]">
+        <motion.div
+          initial={{ opacity: 0.5, y: 100 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            delay: 0.3,
+            duration: 0.8,
+            ease: "easeInOut",
+          }}
+          className="text-center"
+        >
+          <motion.p 
+            initial={{ opacity: 0 }}
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.6, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="text-xs tracking-[0.3em] text-cyan-400/70 uppercase font-medium"
+          >
+            Our Philosophy
+          </motion.p>
+          
+          <motion.h2
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.4 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-8 max-w-4xl text-4xl md:text-5xl lg:text-6xl font-semibold leading-tight text-white tracking-tight"
+          >
+            Execution quality over noise.
+          </motion.h2>
+          
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.6 }}
+            viewport={{ once: true }}
+            className="mx-auto mt-8 max-w-3xl"
+          >
+            <p className="text-lg md:text-xl leading-relaxed text-neutral-400 font-normal">
+              Every system we design is built to compound over time, creating durable advantages that scale with your ambition.
+            </p>
+          </motion.div>
+        </motion.div>
+      </LampContainer>
+
       <Footer />
     </main>
   );
